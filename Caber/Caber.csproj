@@ -47,6 +47,16 @@
   <ItemGroup>
     <Compile Include="ConsoleSupport\CancelKeyMonitor.cs" />
     <Compile Include="ConsoleSupport\InvalidArgumentsException.cs" />
+    <Compile Include="Logging\ExceptionDto.cs" />
+    <Compile Include="Logging\IDiagnosticsLog.cs" />
+    <Compile Include="Logging\ILogEventJsonDto.cs" />
+    <Compile Include="Logging\LogEvent.cs" />
+    <Compile Include="Logging\ILogging.cs" />
+    <Compile Include="Logging\ILoggingPolicy.cs" />
+    <Compile Include="Logging\IOperationsLog.cs" />
+    <Compile Include="Logging\Log.cs" />
+    <Compile Include="Logging\LogEventCategory.cs" />
+    <Compile Include="Logging\TypeDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

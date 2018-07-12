@@ -66,9 +66,10 @@ _What it doesn't:_
    * Handle sender state transitions (authnz failures, etc).
    * Integration testing. Fuzz-testing.
 1. Logging and metrics.
-   * Debug logging.
-   * Basic operational logging.
-   * Structured event logging.
+   * ~~Debug logging.~~
+   * ~~Basic operational logging.~~
+   * ~~Structured event logging.~~
+   * Configure logging.
    * Special handling of the .caber hierarchy.
 1. (other?)
 

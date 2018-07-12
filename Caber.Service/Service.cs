@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Caber.Logging;
 
 namespace Caber.Service
 {
@@ -13,9 +14,12 @@ namespace Caber.Service
         public IDisposable StartInstance()
         {
             var instance = new Instance();
+            Log.Diagnostics.Info(new ServiceStartingEvent());
             try
             {
                 // Start service.
+
+                Log.Diagnostics.Info(new ServiceStartedEvent());
                 return instance;
             }
             catch
@@ -44,10 +48,12 @@ namespace Caber.Service
                 var disposing = components;
                 components = null;
                 if (disposing == null) return;
+                Log.Diagnostics.Info(new ServiceStoppingEvent());
                 while (disposing.Any())
                 {
                     DisposeTrackedComponent(disposing.Pop());
                 }
+                Log.Diagnostics.Info(new ServiceStoppedEvent());
             }
 
             private static void DisposeTrackedComponent(object component)
@@ -59,10 +65,54 @@ namespace Caber.Service
                         disposable.Dispose();
                     }
                 }
-                catch
+                catch (Exception exception)
                 {
+                    Log.Diagnostics.Debug(new ServiceShutdownExceptionEvent(exception, component.GetType()));
                 }
             }
+        }
+
+        private abstract class ServiceLifecycleEvent : LogEvent, ILogEventJsonDto
+        {
+            public override LogEventCategory Category => LogEventCategory.Lifecycle;
+            public override ILogEventJsonDto GetDtoForJson() => this;
+        }
+
+        private class ServiceStartingEvent : ServiceLifecycleEvent
+        {
+            public override string FormatMessage() => "Service is starting...";
+        }
+
+        private class ServiceStartedEvent : ServiceLifecycleEvent
+        {
+            public override string FormatMessage() => "Service has started.";
+        }
+
+        private class ServiceStoppingEvent : ServiceLifecycleEvent
+        {
+            public override string FormatMessage() => "Service is stopping...";
+        }
+
+        private class ServiceStoppedEvent : ServiceLifecycleEvent
+        {
+            public override string FormatMessage() => "Service has stopped.";
+        }
+
+        private class ServiceShutdownExceptionEvent : ServiceLifecycleEvent
+        {
+            private readonly Exception exception;
+            private readonly Type componentType;
+
+            public ServiceShutdownExceptionEvent(Exception exception, Type componentType)
+            {
+                this.exception = exception;
+                this.componentType = componentType;
+            }
+
+            public override string FormatMessage() => $"Exception occurred during shutdown: {exception}";
+
+            public TypeDto ComponentType => TypeDto.MapFrom(componentType);
+            public ExceptionDto Exception => ExceptionDto.MapFrom(exception);
         }
     }
 }

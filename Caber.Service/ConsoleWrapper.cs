@@ -1,5 +1,6 @@
 ﻿using System;
 using Caber.ConsoleSupport;
+using Caber.Logging;
 
 namespace Caber.Service
 {
@@ -14,6 +15,7 @@ namespace Caber.Service
 
         public int Run()
         {
+            Log.Configure(new ConsoleLoggingPolicy());
             var cancelMonitor = new CancelKeyMonitor();
             cancelMonitor.LogRequestsTo(Console.Error);
 
