@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,6 +48,27 @@
   <ItemGroup>
     <Compile Include="ConsoleSupport\CancelKeyMonitor.cs" />
     <Compile Include="ConsoleSupport\InvalidArgumentsException.cs" />
+    <Compile Include="FileSystem\AbstractPath.cs" />
+    <Compile Include="Configuration\ConfigurationLocation.cs" />
+    <Compile Include="Configuration\ConfigurationRuleViolation.cs" />
+    <Compile Include="FileSystem\Validation\DuplicateGraftDeclaration.cs" />
+    <Compile Include="FileSystem\Validation\DuplicateLocalRootDeclaration.cs" />
+    <Compile Include="FileSystem\FileSystemCasing.cs" />
+    <Compile Include="FileSystem\Graft.cs" />
+    <Compile Include="FileSystem\IFileSystemApi.cs" />
+    <Compile Include="FileSystem\NamedRoot.cs" />
+    <Compile Include="FileSystem\StorageHierarchiesBuilder.cs" />
+    <Compile Include="FileSystem\QualifiedPath.cs" />
+    <Compile Include="FileSystem\RelativePath.cs" />
+    <Compile Include="FileSystem\LocalRoot.cs" />
+    <Compile Include="FileSystem\StorageHierarchies.cs" />
+    <Compile Include="FileSystem\PathEqualityComparer.cs" />
+    <Compile Include="FileSystem\PathUtils.cs" />
+    <Compile Include="FileSystem\Validation\DuplicateNamedRootDeclaration.cs" />
+    <Compile Include="FileSystem\Validation\FileSystemCasingConflict.cs" />
+    <Compile Include="FileSystem\Validation\OverlappingLocalRootDeclaration.cs" />
+    <Compile Include="FileSystem\Windows\WindowsFileSystemApi.cs" />
+    <Compile Include="FileSystem\Windows\WindowsPathCanonicaliser.cs" />
     <Compile Include="Logging\ExceptionDto.cs" />
     <Compile Include="Logging\IDiagnosticsLog.cs" />
     <Compile Include="Logging\ILogEventJsonDto.cs" />
@@ -62,6 +84,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\Common.props" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
