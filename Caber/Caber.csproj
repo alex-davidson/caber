@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\CaseInsensitiveEnumConfigurationConverter.cs" />
+    <Compile Include="Configuration\Storage\FilterConfigurationReader.cs" />
+    <Compile Include="Configuration\Storage\Validation\InvalidFilterFileExtension.cs" />
+    <Compile Include="Configuration\Storage\Validation\InvalidFilterGlob.cs" />
+    <Compile Include="Configuration\Storage\Validation\InvalidFilterRegex.cs" />
+    <Compile Include="Configuration\Storage\Validation\MultipleMatchersSpecified.cs" />
     <Compile Include="FileSystem\Filters\FileExtensionFormatException.cs" />
     <Compile Include="FileSystem\Filters\FileExtensionToRegexCompiler.cs" />
     <Compile Include="FileSystem\Filters\FileSystemRegexHelpers.cs" />
@@ -55,9 +61,17 @@
     <Compile Include="FileSystem\Filters\RelativePathFilter.cs" />
     <Compile Include="FileSystem\Filters\GlobToRegexCompiler.cs" />
     <Compile Include="FileSystem\Filters\RelativePathMatcher.cs" />
+    <Compile Include="Configuration\ConfigurationExtensions.cs" />
+    <Compile Include="Configuration\Storage\LocationElement.cs" />
+    <Compile Include="Configuration\Storage\LocationElementCollection.cs" />
+    <Compile Include="Configuration\Storage\MatchElement.cs" />
+    <Compile Include="Configuration\Storage\Validation\RelativePathRequired.cs" />
     <Compile Include="Util\ErrorCollection.cs" />
     <Compile Include="Util\ErrorWatcher.cs" />
     <Compile Include="Util\IErrorCollection.cs" />
+    <Compile Include="Configuration\Storage\StorageElementCollection.cs" />
+    <Compile Include="Configuration\Storage\StorageConfigurationReader.cs" />
+    <Compile Include="Configuration\Storage\Validation\AbsolutePathRequired.cs" />
     <Compile Include="ConsoleSupport\CancelKeyMonitor.cs" />
     <Compile Include="ConsoleSupport\InvalidArgumentsException.cs" />
     <Compile Include="FileSystem\AbstractPath.cs" />

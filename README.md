@@ -32,10 +32,10 @@ _What it doesn't:_
 ## Progress and Scope
 
 1. Implement storage hierarchies.
-   * Configurable roots.
+   * ~~Configurable roots.~~
    * Listeners and notifications.
    * File state tracking. Data structures, hashing service, etc.
-   * Tree mapping/grafting.
+   * ~~Tree mapping/grafting.~~
    * Expiry.
    * Rate-limits.
 1. Authentication/authorisation mechanisms with tests.

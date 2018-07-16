@@ -53,10 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\Storage\StorageConfigurationReaderDiagnosticsTests.cs" />
     <Compile Include="FileSystem\Filters\GlobToRegexCompilerTests.cs" />
     <Compile Include="FileSystem\Filters\FileExtensionToRegexCompilerTests.cs" />
     <Compile Include="FileSystem\Filters\RelativePathFilterTests.cs" />
     <Compile Include="FileSystem\Filters\RelativePathMatcherTests.cs" />
+    <Compile Include="Configuration\Storage\StorageConfigurationReaderTests.cs" />
+    <Compile Include="Configuration\StubFileSystemApi.cs" />
     <Compile Include="FileSystem\QualifiedPathTests.cs" />
     <Compile Include="FileSystem\RelativePathTests.cs" />
     <Compile Include="FileSystem\StorageHierarchiesBuilderTests.cs" />
