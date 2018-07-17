@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Util\ErrorCollection.cs" />
+    <Compile Include="Util\ErrorWatcher.cs" />
+    <Compile Include="Util\IErrorCollection.cs" />
     <Compile Include="ConsoleSupport\CancelKeyMonitor.cs" />
     <Compile Include="ConsoleSupport\InvalidArgumentsException.cs" />
     <Compile Include="FileSystem\AbstractPath.cs" />
@@ -80,6 +83,7 @@
     <Compile Include="Logging\LogEventCategory.cs" />
     <Compile Include="Logging\TypeDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\IErrorReceiver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

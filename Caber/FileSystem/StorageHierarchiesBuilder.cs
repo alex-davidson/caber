@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Caber.Configuration;
 using Caber.FileSystem.Validation;
+using Caber.Util;
 
 namespace Caber.FileSystem
 {
@@ -15,7 +16,7 @@ namespace Caber.FileSystem
         private readonly Dictionary<string, NamedRoot> namedRoots = new Dictionary<string, NamedRoot>(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<QualifiedPath, Graft> grafts = new Dictionary<QualifiedPath, Graft>(default(QualifiedPath.DefaultEqualityComparer));
 
-        private readonly List<ConfigurationRuleViolation> errors = new List<ConfigurationRuleViolation>();
+        private readonly ErrorCollection errors = new ErrorCollection();
         /// <summary>
         /// Errors encountered while building the hierarchy.
         /// </summary>
@@ -24,7 +25,7 @@ namespace Caber.FileSystem
         /// in isolation (eg. absolute paths) should be handled by the caller.
         /// These errors are detected only in the context of the hierarchy as a whole.
         /// </remarks>
-        public IEnumerable<ConfigurationRuleViolation> Errors => errors.ToArray();
+        public IErrorCollection Errors => errors;
 
         public StorageHierarchiesBuilder(IFileSystemApi fileSystemApi)
         {
@@ -40,8 +41,8 @@ namespace Caber.FileSystem
         public ConfigurationRuleViolation AddNamedRoot(string name, LocalRoot node)
         {
             var namedRoot = new NamedRoot(name, node);
-            if (namedRoots.TryGetValue(namedRoot.Name, out var conflict)) return Record(new DuplicateNamedRootDeclaration(namedRoot, conflict));
-            if (!TryAddLocalRoot(node, out var violation)) return Record(violation);
+            if (namedRoots.TryGetValue(namedRoot.Name, out var conflict)) return errors.Record(new DuplicateNamedRootDeclaration(namedRoot, conflict));
+            if (!TryAddLocalRoot(node, out var violation)) return errors.Record(violation);
             namedRoots.Add(namedRoot.Name, namedRoot);
             return null;
         }
@@ -62,9 +63,9 @@ namespace Caber.FileSystem
 
         private ConfigurationRuleViolation AddGraftInternal(Graft graft)
         {
-            if (grafts.TryGetValue(graft.GraftPoint, out var conflict)) return Record(new DuplicateGraftDeclaration(graft, conflict));
-            if (graft.ChildRoot.Casing != graft.GraftPoint.Root.Casing) return Record(new FileSystemCasingConflict(graft));
-            if (!TryAddLocalRoot(graft.ChildRoot, out var violation)) return Record(violation);
+            if (grafts.TryGetValue(graft.GraftPoint, out var conflict)) return errors.Record(new DuplicateGraftDeclaration(graft, conflict));
+            if (graft.ChildRoot.Casing != graft.GraftPoint.Root.Casing) return errors.Record(new FileSystemCasingConflict(graft));
+            if (!TryAddLocalRoot(graft.ChildRoot, out var violation)) return errors.Record(violation);
             grafts.Add(graft.GraftPoint, graft);
             return null;
         }
@@ -106,12 +107,6 @@ namespace Caber.FileSystem
             nodePaths.Add(node);
             violation = null;
             return true;
-        }
-
-        private ConfigurationRuleViolation Record(ConfigurationRuleViolation violation)
-        {
-            errors.Add(violation);
-            return violation;
         }
     }
 }
