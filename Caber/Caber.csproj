@@ -46,6 +46,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileSystem\Filters\FileExtensionFormatException.cs" />
+    <Compile Include="FileSystem\Filters\FileExtensionToRegexCompiler.cs" />
+    <Compile Include="FileSystem\Filters\FileSystemRegexHelpers.cs" />
+    <Compile Include="FileSystem\Filters\FilterRule.cs" />
+    <Compile Include="FileSystem\Filters\GlobFormatException.cs" />
+    <Compile Include="FileSystem\Filters\GlobToRegexCompilerInternal.cs" />
+    <Compile Include="FileSystem\Filters\RelativePathFilter.cs" />
+    <Compile Include="FileSystem\Filters\GlobToRegexCompiler.cs" />
+    <Compile Include="FileSystem\Filters\RelativePathMatcher.cs" />
     <Compile Include="Util\ErrorCollection.cs" />
     <Compile Include="Util\ErrorWatcher.cs" />
     <Compile Include="Util\IErrorCollection.cs" />
