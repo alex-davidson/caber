@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Caber.FileSystem;
+using Caber.FileSystem.Filters;
 using NUnit.Framework;
 
 namespace Caber.UnitTests.FileSystem
@@ -106,6 +108,37 @@ namespace Caber.UnitTests.FileSystem
             Assert.That(storage.MapFromAbstractPath(abstractPath),
                 Is.EqualTo(qualifiedPath)
                     .Using(default(QualifiedPath.DefaultEqualityComparer)));
+        }
+
+        [Test]
+        public void DoesNotMapExcludedPath()
+        {
+            var builder = new StorageHierarchiesBuilder(new StubFileSystemApi());
+            var root = builder.CreateNode(@"C:\Root", FileSystemCasing.CasePreservingInsensitive);
+            builder.AddNamedRoot("Root", root);
+            var regex = new GlobToRegexCompiler().CompileRegex("**/.caber/**", FileSystemCasing.CaseSensitive);
+            builder.AddFilter(root, new RelativePathMatcher(regex, FilterRule.Exclude));
+            var storage = builder.BuildHierarchies();
+
+            var qualifiedPath = new QualifiedPath(root, RelativePath.CreateFromSegments(".caber", "tempfile"));
+
+            Assert.That(storage.MapToAbstractPath(qualifiedPath), Is.Null);
+        }
+
+        [Test]
+        public void MapsIncludedPath()
+        {
+            var builder = new StorageHierarchiesBuilder(new StubFileSystemApi());
+            var root = builder.CreateNode(@"C:\Root", FileSystemCasing.CasePreservingInsensitive);
+            builder.AddNamedRoot("Root", root);
+            builder.AddFilter(root, new RelativePathMatcher(new Regex(".*"), FilterRule.Exclude));
+            var regex = new GlobToRegexCompiler().CompileRegex("**/*.txt", FileSystemCasing.CaseSensitive);
+            builder.AddFilter(root, new RelativePathMatcher(regex, FilterRule.Include));
+            var storage = builder.BuildHierarchies();
+
+            var qualifiedPath = new QualifiedPath(root, RelativePath.CreateFromSegments("test", "log.txt"));
+
+            Assert.That(storage.MapToAbstractPath(qualifiedPath), Is.Not.Null);
         }
     }
 }

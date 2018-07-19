@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using Caber.FileSystem.Filters;
+using Caber.Logging;
 
 namespace Caber.FileSystem
 {
@@ -20,14 +22,16 @@ namespace Caber.FileSystem
     {
         private readonly IFileSystemApi fileSystemApi;
         private readonly NamedRoot[] namedRoots;
+        private readonly IDictionary<LocalRoot, RelativePathFilter> filtersByRoot;
         private readonly List<LocalRoot> rootsLongestToShortest;
         private readonly IDictionary<LocalRoot, Graft> graftsByChild;
         private readonly IDictionary<LocalRoot, Graft[]> graftsByParent;
 
-        public StorageHierarchies(IFileSystemApi fileSystemApi, NamedRoot[] namedRoots, Graft[] grafts)
+        public StorageHierarchies(IFileSystemApi fileSystemApi, NamedRoot[] namedRoots, Graft[] grafts, IDictionary<LocalRoot, RelativePathFilter> filtersByRoot)
         {
             this.fileSystemApi = fileSystemApi;
             this.namedRoots = namedRoots;
+            this.filtersByRoot = filtersByRoot;
 
             graftsByChild = grafts.ToDictionary(g => g.ChildRoot);
             graftsByParent = grafts.GroupBy(g => g.GraftPoint.Root).ToDictionary(g => g.Key, g => g.ToArray());
@@ -42,6 +46,13 @@ namespace Caber.FileSystem
         public ICollection<LocalRoot> AllRoots { get; }
         public ICollection<NamedRoot> NamedRoots { get; }
         public ICollection<Graft> Grafts { get; }
+
+        public RelativePathFilter GetFilterFor(LocalRoot root)
+        {
+            AssertLocalRootExistsInModel(root);
+            filtersByRoot.TryGetValue(root, out var filter);
+            return filter;
+        }
 
         /// <summary>
         /// Express a local path as a known root and a relative canonicalised path.
@@ -104,19 +115,21 @@ namespace Caber.FileSystem
             return namedRoots.FirstOrDefault(r => r.LocalRoot == currentNode);
         }
 
-        public AbstractPath MapToAbstractPath(QualifiedPath qualifiedPath)
+        public AbstractPath MapToAbstractPath(QualifiedPath qualifiedPath, IDiagnosticsLog log = null)
         {
             var currentNode = qualifiedPath.Root;
             AssertLocalRootExistsInModel(currentNode);
             var traversed = new HashSet<LocalRoot> { currentNode };
             var paths = new Stack<RelativePath>();
             paths.Push(qualifiedPath.RelativePath);
+            if (!PassesFilter(currentNode, paths, log)) return null;
             while (graftsByChild.TryGetValue(currentNode, out var graft))
             {
                 currentNode = graft.GraftPoint.Root;
                 paths.Push(graft.GraftPoint.RelativePath);
                 // Sanity check. Should be impossible to configure such a situation.
                 if (!traversed.Add(currentNode)) throw new InvalidOperationException("Cycle detected in graph.");
+                if (!PassesFilter(currentNode, paths, log)) return null;
             }
             foreach (var namedRoot in namedRoots)
             {
@@ -124,6 +137,28 @@ namespace Caber.FileSystem
                 return new AbstractPath(namedRoot, RelativePath.Combine(paths));
             }
             return null;
+        }
+
+        private bool PassesFilter(LocalRoot root, IEnumerable<RelativePath> paths, IDiagnosticsLog log = null)
+        {
+            var filter = GetFilterFor(root);
+            if (!filter.Exists) return true;
+            var relativePath = RelativePath.Combine(paths);
+            var match = filter.Evaluate(relativePath);
+            switch (match.Rule)
+            {
+                case FilterRule.Exclude:
+                    log?.Debug(new ExcludedByFilterEvent(root, relativePath, match));
+                    return false;
+                case FilterRule.Include:
+                    if (default(RelativePathMatcher).Equals(match))
+                    {
+                        log?.Debug(new ExcludedByFilterEvent(root, relativePath, match));
+                    }
+                    return true;
+                default:
+                    throw new ArgumentOutOfRangeException($"Not a valid rule type: {match.Rule}");
+            }
         }
 
         public QualifiedPath MapFromAbstractPath(AbstractPath abstractPath)
@@ -147,6 +182,54 @@ namespace Caber.FileSystem
         {
             if (rootsLongestToShortest.Contains(root)) return;
             throw new InvalidOperationException($"Unrecognised LocalRoot: {root}");
+        }
+
+        public abstract class FilterEvent : LogEvent, ILogEventJsonDto
+        {
+            private readonly LocalRoot localRoot;
+            private readonly RelativePath relativePath;
+
+            protected FilterEvent(LocalRoot localRoot, RelativePath relativePath)
+            {
+                this.localRoot = localRoot;
+                this.relativePath = relativePath;
+            }
+
+            public override LogEventCategory Category => LogEventCategory.Storage;
+            public override ILogEventJsonDto GetDtoForJson() => this;
+
+            public string LocalRoot => localRoot.ToString();
+            public string Path => relativePath.ToString();
+        }
+
+        public class IncludedByFilterEvent : FilterEvent
+        {
+            private readonly RelativePathMatcher matcher;
+
+            public IncludedByFilterEvent(LocalRoot localRoot, RelativePath relativePath, RelativePathMatcher matcher) : base(localRoot, relativePath)
+            {
+                if (matcher.Rule != FilterRule.Include) throw new ArgumentException("Matcher is not an include rule.");
+                this.matcher = matcher;
+            }
+
+            public override string FormatMessage() => $"Include rule matched: {Matcher} ~= {LocalRoot}:{Path}";
+
+            public string Matcher => matcher.ToString();
+        }
+
+        public class ExcludedByFilterEvent : FilterEvent
+        {
+            private readonly RelativePathMatcher matcher;
+
+            public ExcludedByFilterEvent(LocalRoot localRoot, RelativePath relativePath, RelativePathMatcher matcher) : base(localRoot, relativePath)
+            {
+                if (matcher.Rule != FilterRule.Exclude) throw new ArgumentException("Matcher is not an exclude rule.");
+                this.matcher = matcher;
+            }
+
+            public override string FormatMessage() => $"Exclude rule matched: {Matcher} ~= {LocalRoot}:{Path}";
+
+            public string Matcher => matcher.ToString();
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Caber.Configuration;
+using Caber.FileSystem.Filters;
 using Caber.FileSystem.Validation;
 using Caber.Util;
 
@@ -15,6 +16,7 @@ namespace Caber.FileSystem
         private readonly HashSet<LocalRoot> nodePaths = new HashSet<LocalRoot>(default(LocalRoot.RootUriEqualityComparer));
         private readonly Dictionary<string, NamedRoot> namedRoots = new Dictionary<string, NamedRoot>(StringComparer.OrdinalIgnoreCase);
         private readonly Dictionary<QualifiedPath, Graft> grafts = new Dictionary<QualifiedPath, Graft>(default(QualifiedPath.DefaultEqualityComparer));
+        private readonly Dictionary<LocalRoot, List<RelativePathMatcher>> filters = new Dictionary<LocalRoot, List<RelativePathMatcher>>();
 
         private readonly ErrorCollection errors = new ErrorCollection();
         /// <summary>
@@ -70,12 +72,26 @@ namespace Caber.FileSystem
             return null;
         }
 
+        public ConfigurationRuleViolation AddFilter(LocalRoot owner, RelativePathMatcher filterRule)
+        {
+            if (!nodes.Contains(owner)) throw new InvalidOperationException($"Owner is not yet declared: {owner}");
+
+            if (!filters.TryGetValue(owner, out var list))
+            {
+                list = new List<RelativePathMatcher>();
+                filters.Add(owner, list);
+            }
+            list.Add(filterRule);
+            return null;
+        }
+
         public StorageHierarchies BuildHierarchies()
         {
             return new StorageHierarchies(
                 fileSystemApi,
                 namedRoots.Values.ToArray(),
-                grafts.Values.ToArray());
+                grafts.Values.ToArray(),
+                filters.ToDictionary(f => f.Key, f => new RelativePathFilter(f.Value)));
         }
 
         private bool TryAddLocalRoot(LocalRoot node, out ConfigurationRuleViolation violation)
