@@ -54,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Storage\StorageConfigurationReaderDiagnosticsTests.cs" />
+    <Compile Include="Documentation\DocumentationTests.cs" />
+    <Compile Include="Documentation\EmbeddedMarkdown.cs" />
+    <Compile Include="Documentation\EmbeddedMarkdownSource.cs" />
+    <Compile Include="Documentation\MarkdownXmlBlockExtractorTests.cs" />
+    <Compile Include="Documentation\XmlBlock.cs" />
+    <Compile Include="Documentation\MarkdownXmlBlockExtractor.cs" />
     <Compile Include="FileSystem\Filters\GlobToRegexCompilerTests.cs" />
     <Compile Include="FileSystem\Filters\FileExtensionToRegexCompilerTests.cs" />
     <Compile Include="FileSystem\Filters\RelativePathFilterTests.cs" />
@@ -82,6 +88,12 @@
       <Project>{319452D0-9E31-4446-BE4A-CD19BEC48044}</Project>
       <Name>Caber</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\Documentation\**\*.md">
+      <Link>Documentation\%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <Visible>true</Visible>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="..\Common.props" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
