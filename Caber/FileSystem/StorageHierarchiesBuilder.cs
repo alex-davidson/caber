@@ -44,9 +44,18 @@ namespace Caber.FileSystem
         {
             var namedRoot = new NamedRoot(name, node);
             if (namedRoots.TryGetValue(namedRoot.Name, out var conflict)) return errors.Record(new DuplicateNamedRootDeclaration(namedRoot, conflict));
-            if (!TryAddLocalRoot(node, out var violation)) return errors.Record(violation);
+            if (!TryAddLocalRoot(node, null, out var violation)) return errors.Record(violation);
             namedRoots.Add(namedRoot.Name, namedRoot);
             return null;
+        }
+
+        public ConfigurationRuleViolation AddLocation(LocalRoot parent, string relativePath, out LocalRoot child)
+        {
+            if (!nodes.Contains(parent)) throw new InvalidOperationException($"Parent is not yet declared: {parent}");
+            var childRootPath = new Uri(parent.RootUri, relativePath).LocalPath;
+            child = fileSystemApi.CreateStorageRoot(childRootPath.AsDirectoryPath(), parent.Casing);
+            var graft = CreateGraftInternal(parent, relativePath, child);
+            return AddGraftInternal(graft, parent);
         }
 
         public ConfigurationRuleViolation AddGraftPoint(LocalRoot parent, string relativePath, LocalRoot child)
@@ -63,11 +72,11 @@ namespace Caber.FileSystem
             return new Graft(new QualifiedPath(parent, graftPath), child);
         }
 
-        private ConfigurationRuleViolation AddGraftInternal(Graft graft)
+        private ConfigurationRuleViolation AddGraftInternal(Graft graft, LocalRoot validEnclosingParent = null)
         {
             if (grafts.TryGetValue(graft.GraftPoint, out var conflict)) return errors.Record(new DuplicateGraftDeclaration(graft, conflict));
             if (graft.ChildRoot.Casing != graft.GraftPoint.Root.Casing) return errors.Record(new FileSystemCasingConflict(graft));
-            if (!TryAddLocalRoot(graft.ChildRoot, out var violation)) return errors.Record(violation);
+            if (!TryAddLocalRoot(graft.ChildRoot, validEnclosingParent, out var violation)) return errors.Record(violation);
             grafts.Add(graft.GraftPoint, graft);
             return null;
         }
@@ -94,7 +103,7 @@ namespace Caber.FileSystem
                 filters.ToDictionary(f => f.Key, f => new RelativePathFilter(f.Value)));
         }
 
-        private bool TryAddLocalRoot(LocalRoot node, out ConfigurationRuleViolation violation)
+        private bool TryAddLocalRoot(LocalRoot node, LocalRoot validEnclosingParent, out ConfigurationRuleViolation violation)
         {
             if (nodes.Contains(node))
             {
@@ -113,6 +122,7 @@ namespace Caber.FileSystem
                     violation = new OverlappingLocalRootDeclaration(node, existing);
                     return false;
                 }
+                if (existing == validEnclosingParent) continue;
                 if (existing.RootUri.IsBaseOf(node.RootUri))
                 {
                     violation = new OverlappingLocalRootDeclaration(existing, node);

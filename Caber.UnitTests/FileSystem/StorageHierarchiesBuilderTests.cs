@@ -168,5 +168,19 @@ namespace Caber.UnitTests.FileSystem
             Assert.That(error, Is.InstanceOf<FileSystemCasingConflict>());
             Assert.That(builder.Errors, Is.EquivalentTo(new [] { error }));
         }
+
+        [Test]
+        public void AddingLocation_AddsOverlappingGraft_WithoutError()
+        {
+            var builder = new StorageHierarchiesBuilder(new StubFileSystemApi());
+            var root = builder.CreateNode(@"C:\Root", FileSystemCasing.CasePreservingInsensitive);
+            builder.AddNamedRoot("Root", root);
+
+            var error = builder.AddLocation(root, "Child", out var child);
+
+            Assert.That(error, Is.Null);
+            Assert.That(builder.Errors, Is.Empty);
+            Assert.That(child.RootUri, Is.EqualTo(new Uri(root.RootUri, @"Child\")));
+        }
     }
 }
