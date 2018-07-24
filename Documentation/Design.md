@@ -4,6 +4,7 @@
 * [Storage and File System](Design.FileSystem.md)
   * [Filtering](Design.FileSystem.Filters.md)
   * [Listeners](Design.FileSystem.Listeners.md)
+* [Routing](Design.Routing.md)
 * [Local Data Storage](Design.LocalStorage.md)
 * [Configuration Diagnostics](Design.ConfigurationDiagnostics.md)
 

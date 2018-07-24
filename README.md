@@ -8,6 +8,7 @@ them to a central site.
   * [Storage and File System](Documentation/Design.FileSystem.md)
     * [Filtering](Documentation/Design.FileSystem.Filters.md)
     * [Listeners](Documentation/Design.FileSystem.Listeners.md)
+  * [Routing](Documentation/Design.Routing.md)
   * [Local Data Storage](Documentation/Design.LocalStorage.md)
   * [Configuration Diagnostics](Documentation/Design.ConfigurationDiagnostics.md)
 * [Configuration Example](Documentation/Example.md)

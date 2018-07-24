@@ -1,6 +1,7 @@
 # Design: File System Listeners and Events
 
 * Up: [Storage and File System](Design.FileSystem.md)
+* Related: [Routing](Design.Routing.md)
 
 When a route subscribes to a storage hierarchy, we need to detect changes in
 order to dispatch them via the sender.
@@ -84,3 +85,9 @@ This gives us a stream of notifications of changes to
 routing logic.
 
 It is also trivial to unit test.
+
+We don't really need to handle vast numbers of events with the initial implementation, but this does suggest how to structure component APIs:
+* The watchers are responsible for pushing sets of paths into a shared pool. This may be triggered by a public method call.
+
+
+
