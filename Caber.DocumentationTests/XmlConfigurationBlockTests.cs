@@ -2,14 +2,15 @@
 using System.Linq;
 using System.Xml.Linq;
 using Caber.Configuration.Storage;
+using Caber.DocumentationTests.Markdown;
 using Caber.FileSystem;
 using Caber.UnitTests.TestHelpers;
 using NUnit.Framework;
 
-namespace Caber.UnitTests.Documentation
+namespace Caber.DocumentationTests
 {
     [TestFixture]
-    public class DocumentationTests
+    public class XmlConfigurationBlockTests
     {
         public static IEnumerable<XmlBlock> AllXmlBlocks => new EmbeddedMarkdownSource().GetAll().SelectMany(ReadXmlBlocks);
 
@@ -54,7 +55,7 @@ namespace Caber.UnitTests.Documentation
         {
             var element = new TestConfigurationProvider<StorageElementCollection>()
                 .GetAsElement(CreateDummyElementFromInnerXml(storageElement));
-            var builder = new StorageHierarchiesBuilder(new Configuration.StubFileSystemApi(FileSystemCasing.CasePreservingInsensitive));
+            var builder = new StorageHierarchiesBuilder(new StubFileSystemApi(FileSystemCasing.CasePreservingInsensitive));
             var reader = new StorageConfigurationReader();
             reader.Read(element, builder);
             builder.BuildHierarchies();
@@ -67,7 +68,7 @@ namespace Caber.UnitTests.Documentation
         {
             using (var reader = markdown.Open())
             {
-                return new MarkdownXmlBlockExtractor().Extract(reader, markdown.FileName);
+                return new MarkdownXmlBlockExtractor().Extract(reader, markdown.FilePath);
             }
         }
 

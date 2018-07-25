@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.UnitTests", "Caber.Un
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Service", "Caber.Service\Caber.Service.csproj", "{3FC0F516-5A49-4B3C-8593-6CAD499B77BA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.DocumentationTests", "Caber.DocumentationTests\Caber.DocumentationTests.csproj", "{19DA7379-CEF4-42B4-9BD0-5927E3E6904C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3FC0F516-5A49-4B3C-8593-6CAD499B77BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FC0F516-5A49-4B3C-8593-6CAD499B77BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FC0F516-5A49-4B3C-8593-6CAD499B77BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19DA7379-CEF4-42B4-9BD0-5927E3E6904C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19DA7379-CEF4-42B4-9BD0-5927E3E6904C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19DA7379-CEF4-42B4-9BD0-5927E3E6904C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19DA7379-CEF4-42B4-9BD0-5927E3E6904C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

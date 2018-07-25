@@ -4,7 +4,7 @@ A service for gathering logs and other append-only files and securely shipping
 them to a central site.
 
 * [Design](Documentation/Design.md)
-  * [Protocol](Documentation/Protocol.md)
+  * [Protocol](Documentation/Design.Protocol.md)
   * [Storage and File System](Documentation/Design.FileSystem.md)
     * [Filtering](Documentation/Design.FileSystem.Filters.md)
   * [Configuration Diagnostics](Documentation/Design.ConfigurationDiagnostics.md)

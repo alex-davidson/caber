@@ -3,7 +3,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Caber.Configuration;
 
-namespace Caber.UnitTests.Documentation
+namespace Caber.DocumentationTests
 {
     public class XmlBlock
     {
