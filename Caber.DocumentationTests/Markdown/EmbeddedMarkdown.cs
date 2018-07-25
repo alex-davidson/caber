@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.Reflection;
 
-namespace Caber.UnitTests.Documentation
+namespace Caber.DocumentationTests.Markdown
 {
     public class EmbeddedMarkdown
     {

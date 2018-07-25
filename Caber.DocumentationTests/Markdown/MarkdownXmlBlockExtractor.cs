@@ -5,7 +5,7 @@ using System.Linq;
 using System.Xml;
 using Caber.Configuration;
 
-namespace Caber.UnitTests.Documentation
+namespace Caber.DocumentationTests.Markdown
 {
     public class MarkdownXmlBlockExtractor
     {

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Xml;
 using NUnit.Framework;
 
-namespace Caber.UnitTests.Documentation
+namespace Caber.DocumentationTests.Markdown
 {
     [TestFixture]
     public class MarkdownXmlBlockExtractorTests
