@@ -47,6 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Link.cs" />
+    <Compile Include="LinkTests.cs" />
+    <Compile Include="Markdown\LineReader.cs" />
+    <Compile Include="Markdown\MarkdownLinkExtractor.cs" />
     <Compile Include="NormalisedPath.cs" />
     <Compile Include="XmlConfigurationBlockTests.cs" />
     <Compile Include="Markdown\EmbeddedMarkdown.cs" />
