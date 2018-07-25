@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="NormalisedPath.cs" />
     <Compile Include="XmlConfigurationBlockTests.cs" />
     <Compile Include="Markdown\EmbeddedMarkdown.cs" />
     <Compile Include="Markdown\EmbeddedMarkdownSource.cs" />
@@ -62,6 +63,7 @@
   <ItemGroup>
     <EmbeddedResource Include="..\**\*.md" Exclude="..\packages\**">
       <Link>Markdown\%(RecursiveDir)%(FileName)%(Extension)</Link>
+      <LogicalName>$(RootNamespace).Markdown.%(RecursiveDir)%(FileName)%(Extension)</LogicalName>
       <Visible>true</Visible>
     </EmbeddedResource>
   </ItemGroup>

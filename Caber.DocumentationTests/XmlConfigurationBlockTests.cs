@@ -68,7 +68,7 @@ namespace Caber.DocumentationTests
         {
             using (var reader = markdown.Open())
             {
-                return new MarkdownXmlBlockExtractor().Extract(reader, markdown.FileName);
+                return new MarkdownXmlBlockExtractor().Extract(reader, markdown.FilePath);
             }
         }
 
