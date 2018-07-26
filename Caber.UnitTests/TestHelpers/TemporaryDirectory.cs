@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Caber.FileSystem;
+using System;
 using System.IO;
 
 namespace Caber.UnitTests.TestHelpers
@@ -9,6 +10,7 @@ namespace Caber.UnitTests.TestHelpers
         {
             if (Directory.Exists(path)) throw new ArgumentException($"Directory exists: {path}", nameof(path));
             FullPath = path;
+            Directory.CreateDirectory(path);
         }
 
         public string FullPath { get; }
@@ -31,7 +33,7 @@ namespace Caber.UnitTests.TestHelpers
 
         public static TemporaryDirectory CreateNew()
         {
-            var directoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName());
+            var directoryPath = Path.Combine(Path.GetTempPath(), Path.GetRandomFileName()).AsDirectoryPath();
             return new TemporaryDirectory(directoryPath);
         }
     }
