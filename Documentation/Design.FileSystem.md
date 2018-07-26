@@ -2,6 +2,7 @@
 
 * Up: [Design](Design.md)
 * [Filtering](Design.FileSystem.Filters.md)
+* [Listeners](Design.FileSystem.Listeners.md)
   
 We have two models:
 * the OS filesystem, which is a single hierarchy.
