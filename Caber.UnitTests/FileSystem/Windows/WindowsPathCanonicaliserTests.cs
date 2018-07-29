@@ -133,6 +133,21 @@ namespace Caber.UnitTests.FileSystem.Windows
             Assert.That(result.LocalPath, Is.EqualTo(expectedPath));
         }
 
+        [Test]
+        public void CanonicaliseAbsolute_DirectoryPath_ReturnsDirectoryUri()
+        {
+            var originalPath = @"e:\a\b\c\";
+            var expectedPath = @"e:\a\b\c\";
+
+            var api = Mock.Of<WindowsFileSystemApi.Internal>();
+            MockHierarchy(Mock.Get(api), @"e:\", "a", "b", "c");
+            var sut = new WindowsPathCanonicaliser();
+
+            var result = sut.CanonicaliseAbsolute(api, originalPath);
+
+            Assert.That(result.LocalPath, Is.EqualTo(expectedPath));
+        }
+
         private static void MockHierarchy(Mock<WindowsFileSystemApi.Internal> mock, string root, params string[] parts)
         {
             var current = new DirectoryInfo(root);

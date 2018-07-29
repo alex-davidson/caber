@@ -66,6 +66,7 @@
     <Compile Include="FileSystem\StorageHierarchiesTests.cs" />
     <Compile Include="FileSystem\StubFileSystemApi.cs" />
     <Compile Include="FileSystem\UriTests.cs" />
+    <Compile Include="FileSystem\Windows\WindowsFileSystemApiTests.cs" />
     <Compile Include="FileSystem\Windows\WindowsPathCanonicaliserTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHelpers\CleanUpAttribute.cs" />

@@ -46,7 +46,8 @@ namespace Caber.FileSystem.Windows
                 throw new ArgumentException($"Unable to parse path: {absoluteFileSystemPath}", nameof(absoluteFileSystemPath));
             }
             TryCanonicaliseRelative(api, root, parts);
-            return new Uri(rootUri, Path.Combine(parts));
+            var relativeParts = Path.Combine(parts);
+            return new Uri(rootUri, PathUtils.IsDirectoryUri(absoluteUri) ? relativeParts.AsDirectoryPath() : relativeParts);
         }
     }
 }
