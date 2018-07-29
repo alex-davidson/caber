@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\Storage\StorageConfigurationReaderDiagnosticsTests.cs" />
+    <Compile Include="FileSystem\FileSnapshotServiceTests.cs" />
     <Compile Include="FileSystem\FileSystemListenerTests.cs" />
     <Compile Include="FileSystem\Filters\GlobToRegexCompilerTests.cs" />
     <Compile Include="FileSystem\Filters\FileExtensionToRegexCompilerTests.cs" />

@@ -59,6 +59,9 @@
     <Compile Include="Configuration\Storage\Validation\InvalidFilterGlob.cs" />
     <Compile Include="Configuration\Storage\Validation\InvalidFilterRegex.cs" />
     <Compile Include="Configuration\Storage\Validation\MultipleMatchersSpecified.cs" />
+    <Compile Include="FileSystem\FileSnapshot.cs" />
+    <Compile Include="FileSystem\FileSnapshotService.cs" />
+    <Compile Include="FileSystem\FileStreamFactory.cs" />
     <Compile Include="FileSystem\FileSystemListener.cs" />
     <Compile Include="FileSystem\Filters\FileExtensionFormatException.cs" />
     <Compile Include="FileSystem\Filters\FileExtensionToRegexCompiler.cs" />
@@ -80,7 +83,9 @@
     <Compile Include="Retry\RetryableSequence.cs" />
     <Compile Include="Retry\RetryGroup.cs" />
     <Compile Include="Retry\RetryToken.cs" />
+    <Compile Include="Util\ByteArrayExtensions.cs" />
     <Compile Include="Util\Clock.cs" />
+    <Compile Include="Util\Hash.cs" />
     <Compile Include="Util\IClock.cs" />
     <Compile Include="Util\IWorkerLoop.cs" />
     <Compile Include="Util\ErrorCollection.cs" />
@@ -134,7 +139,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\IErrorReceiver.cs" />
     <Compile Include="Util\IWorkerLoopLifetime.cs" />
+    <Compile Include="Util\LengthLimitedReadOnlyStream.cs" />
     <Compile Include="Util\RealClock.cs" />
+    <Compile Include="Util\Sha256Hasher.cs" />
     <Compile Include="Util\TaskExtensions.cs" />
     <Compile Include="Util\WorkerRunner.cs" />
   </ItemGroup>
