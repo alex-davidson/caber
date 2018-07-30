@@ -5,7 +5,13 @@ using Caber.Util;
 
 namespace Caber.FileSystem
 {
-    public class FileSnapshotService
+    public interface IFileSnapshotService
+    {
+        Task<FileSnapshot> GetSnapshot(QualifiedPath qualifiedPath, DateTimeOffset effectiveTimestamp);
+        Stream ReadSnapshot(FileSnapshot snapshot);
+    }
+
+    public class FileSnapshotService : IFileSnapshotService
     {
         private static readonly Task<FileSnapshot> NullTask = Task.FromResult<FileSnapshot>(null);
         private readonly StorageHierarchies storageHierarchies;

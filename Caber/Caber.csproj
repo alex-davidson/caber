@@ -96,6 +96,7 @@
     <Compile Include="LocalState\LocalFilesystemStore.cs" />
     <Compile Include="LocalState\LocalStoreCorruptFileStreamEvent.cs" />
     <Compile Include="Logging\UnexpectedExceptionEvent.cs" />
+    <Compile Include="Routing\CachingFileSnapshotService.cs" />
     <Compile Include="Routing\FileChangeEvent.cs" />
     <Compile Include="Routing\FileChangeEventQueue.cs" />
     <Compile Include="Routing\FileChangeEventTranslator.cs" />
