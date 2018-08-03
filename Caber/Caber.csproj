@@ -101,6 +101,8 @@
     <Compile Include="Routing\FileChangeEventQueue.cs" />
     <Compile Include="Routing\FileChangeEventTranslator.cs" />
     <Compile Include="Routing\FileSystemPathPool.cs" />
+    <Compile Include="Routing\FileChangeEventRouter.cs" />
+    <Compile Include="Routing\IFileSnapshotRoute.cs" />
     <Compile Include="Configuration\Storage\StorageElementCollection.cs" />
     <Compile Include="Configuration\Storage\StorageConfigurationReader.cs" />
     <Compile Include="Configuration\Storage\Validation\AbsolutePathRequired.cs" />
