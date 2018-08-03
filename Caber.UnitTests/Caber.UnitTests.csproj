@@ -83,6 +83,8 @@
     <Compile Include="TestHelpers\MockClock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LocalState\AtomicFileTests.cs" />
+    <Compile Include="Retry\RetryGroupTests.cs" />
+    <Compile Include="Retry\RetryTokenTests.cs" />
     <Compile Include="TestHelpers\CleanUpAttribute.cs" />
     <Compile Include="TestHelpers\Match.cs" />
     <Compile Include="TestHelpers\TemporaryDirectory.cs" />

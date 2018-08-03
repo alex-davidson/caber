@@ -73,6 +73,12 @@
     <Compile Include="Configuration\Storage\LocationElementCollection.cs" />
     <Compile Include="Configuration\Storage\MatchElement.cs" />
     <Compile Include="Configuration\Storage\Validation\RelativePathRequired.cs" />
+    <Compile Include="Retry\IFaultTracker.cs" />
+    <Compile Include="Retry\IRetryCollector.cs" />
+    <Compile Include="Retry\IRetryParent.cs" />
+    <Compile Include="Retry\RetryableSequence.cs" />
+    <Compile Include="Retry\RetryGroup.cs" />
+    <Compile Include="Retry\RetryToken.cs" />
     <Compile Include="Util\Clock.cs" />
     <Compile Include="Util\IClock.cs" />
     <Compile Include="Util\ErrorCollection.cs" />
