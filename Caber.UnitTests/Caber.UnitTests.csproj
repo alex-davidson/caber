@@ -86,6 +86,8 @@
     <Compile Include="LocalState\AtomicFileTests.cs" />
     <Compile Include="Retry\RetryGroupTests.cs" />
     <Compile Include="Retry\RetryTokenTests.cs" />
+    <Compile Include="Routing\FileChangeEventQueueTests.cs" />
+    <Compile Include="Routing\FileSystemPathPoolTests.cs" />
     <Compile Include="TestHelpers\CleanUpAttribute.cs" />
     <Compile Include="TestHelpers\Match.cs" />
     <Compile Include="TestHelpers\TemporaryDirectory.cs" />

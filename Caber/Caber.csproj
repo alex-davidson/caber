@@ -82,6 +82,7 @@
     <Compile Include="Retry\RetryToken.cs" />
     <Compile Include="Util\Clock.cs" />
     <Compile Include="Util\IClock.cs" />
+    <Compile Include="Util\IWorkerLoop.cs" />
     <Compile Include="Util\ErrorCollection.cs" />
     <Compile Include="Util\ErrorWatcher.cs" />
     <Compile Include="Util\IErrorCollection.cs" />
@@ -89,6 +90,10 @@
     <Compile Include="LocalState\IStateSerialiserProvider.cs" />
     <Compile Include="LocalState\LocalFilesystemStore.cs" />
     <Compile Include="LocalState\LocalStoreCorruptFileStreamEvent.cs" />
+    <Compile Include="Logging\UnexpectedExceptionEvent.cs" />
+    <Compile Include="Routing\FileChangeEvent.cs" />
+    <Compile Include="Routing\FileChangeEventQueue.cs" />
+    <Compile Include="Routing\FileChangeEventTranslator.cs" />
     <Compile Include="Routing\FileSystemPathPool.cs" />
     <Compile Include="Configuration\Storage\StorageElementCollection.cs" />
     <Compile Include="Configuration\Storage\StorageConfigurationReader.cs" />
@@ -128,8 +133,10 @@
     <Compile Include="Logging\TypeDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\IErrorReceiver.cs" />
+    <Compile Include="Util\IWorkerLoopLifetime.cs" />
     <Compile Include="Util\RealClock.cs" />
     <Compile Include="Util\TaskExtensions.cs" />
+    <Compile Include="Util\WorkerRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
