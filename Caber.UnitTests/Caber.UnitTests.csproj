@@ -68,6 +68,7 @@
     <Compile Include="FileSystem\UriTests.cs" />
     <Compile Include="FileSystem\Windows\WindowsFileSystemApiTests.cs" />
     <Compile Include="FileSystem\Windows\WindowsPathCanonicaliserTests.cs" />
+    <Compile Include="TestHelpers\MockClock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHelpers\CleanUpAttribute.cs" />
     <Compile Include="TestHelpers\Match.cs" />
