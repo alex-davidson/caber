@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Caber.Authentication;
 using Caber.Logging;
+using Caber.Service.Http.Authentication;
 
 namespace Caber.Service
 {
@@ -17,7 +19,23 @@ namespace Caber.Service
             Log.Diagnostics.Info(new ServiceStartingEvent());
             try
             {
+                // Load configuration.
+                const string rootUri = "https://localhost:7679/caber";
+
                 // Start service.
+                ICaberMutualAuthentication authentication = null;
+
+                var serverBuilder = new CaberServerBuilder
+                {
+                    ServerUrl = rootUri,
+                    Authentication = authentication
+                };
+
+                var host = serverBuilder
+                    .CreateKestrelBuilder()
+                    .Build();
+                host.Start();
+                instance.Track(host);
 
                 Log.Diagnostics.Info(new ServiceStartedEvent());
                 return instance;

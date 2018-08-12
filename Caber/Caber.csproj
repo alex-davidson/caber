@@ -47,6 +47,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\CaberClaimTypes.cs" />
+    <Compile Include="Authentication\CaberIdentity.cs" />
+    <Compile Include="Authentication\CaberPrincipal.cs" />
+    <Compile Include="Authentication\ICaberMutualAuthentication.cs" />
+    <Compile Include="Authentication\PeerIdentityValidationResult.cs" />
     <Compile Include="FileSystem\FileLockedException.cs" />
     <Compile Include="LocalState\AtomicFile.cs" />
     <Compile Include="LocalState\LocalStoreTimeoutEvent.cs" />
@@ -126,6 +131,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\Common.props" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
