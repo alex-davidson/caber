@@ -9,6 +9,7 @@ them to a central site.
     * [Filtering](Documentation/Design.FileSystem.Filters.md)
   * [Local Data Storage](Documentation/Design.LocalStorage.md)
   * [Configuration Diagnostics](Documentation/Design.ConfigurationDiagnostics.md)
+  * [Authorisation and Identity](Documentation/Design.Authorisation.md)
 * [Configuration Example](Documentation/Example.md)
 * [MIT License](LICENSE.txt)
 
