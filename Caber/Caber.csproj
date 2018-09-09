@@ -52,6 +52,8 @@
     <Compile Include="Authentication\CaberPrincipal.cs" />
     <Compile Include="Authentication\ICaberMutualAuthentication.cs" />
     <Compile Include="Authentication\PeerIdentityValidationResult.cs" />
+    <Compile Include="Authorisation\AuthorisationService.cs" />
+    <Compile Include="Authorisation\CertificateThumbprint.cs" />
     <Compile Include="FileSystem\FileLockedException.cs" />
     <Compile Include="LocalState\AtomicFile.cs" />
     <Compile Include="LocalState\LocalStoreTimeoutEvent.cs" />
@@ -85,6 +87,8 @@
     <Compile Include="Util\ErrorCollection.cs" />
     <Compile Include="Util\ErrorWatcher.cs" />
     <Compile Include="Util\IErrorCollection.cs" />
+    <Compile Include="LocalState\IServiceAdministrationState.cs" />
+    <Compile Include="LocalState\IServiceState.cs" />
     <Compile Include="LocalState\IStateSerialiser.cs" />
     <Compile Include="LocalState\IStateSerialiserProvider.cs" />
     <Compile Include="LocalState\LocalFilesystemStore.cs" />
