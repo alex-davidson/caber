@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileSystem\FileLockedException.cs" />
+    <Compile Include="LocalState\AtomicFile.cs" />
+    <Compile Include="LocalState\ILocalStore.cs" />
+    <Compile Include="LocalState\IReadableLocalStore.cs" />
     <Compile Include="Configuration\CaseInsensitiveEnumConfigurationConverter.cs" />
     <Compile Include="Configuration\Storage\FilterConfigurationReader.cs" />
     <Compile Include="Configuration\Storage\Validation\InvalidFilterFileExtension.cs" />
@@ -71,6 +75,10 @@
     <Compile Include="Util\ErrorCollection.cs" />
     <Compile Include="Util\ErrorWatcher.cs" />
     <Compile Include="Util\IErrorCollection.cs" />
+    <Compile Include="LocalState\IStateSerialiser.cs" />
+    <Compile Include="LocalState\IStateSerialiserProvider.cs" />
+    <Compile Include="LocalState\LocalFilesystemStore.cs" />
+    <Compile Include="LocalState\LocalStoreCorruptFileStreamEvent.cs" />
     <Compile Include="Configuration\Storage\StorageElementCollection.cs" />
     <Compile Include="Configuration\Storage\StorageConfigurationReader.cs" />
     <Compile Include="Configuration\Storage\Validation\AbsolutePathRequired.cs" />

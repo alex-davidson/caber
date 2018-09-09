@@ -68,10 +68,13 @@
     <Compile Include="FileSystem\UriTests.cs" />
     <Compile Include="FileSystem\Windows\WindowsFileSystemApiTests.cs" />
     <Compile Include="FileSystem\Windows\WindowsPathCanonicaliserTests.cs" />
+    <Compile Include="TestHelpers\ConcurrentOperations.cs" />
     <Compile Include="TestHelpers\MockClock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LocalState\AtomicFileTests.cs" />
     <Compile Include="TestHelpers\CleanUpAttribute.cs" />
     <Compile Include="TestHelpers\Match.cs" />
+    <Compile Include="TestHelpers\TemporaryDirectory.cs" />
     <Compile Include="TestHelpers\TemporaryFile.cs" />
     <Compile Include="TestHelpers\TestConfigurationProvider.cs" />
     <Compile Include="TestHelpers\TestDisposables.cs" />
@@ -85,6 +88,7 @@
       <Name>Caber</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="..\Common.props" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
