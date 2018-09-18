@@ -3,6 +3,7 @@
 * [Protocol](Design.Protocol.md)
 * [Storage and File System](Design.FileSystem.md)
   * [Filtering](Design.FileSystem.Filters.md)
+* [Local Data Storage](Design.LocalStorage.md)
 * [Configuration Diagnostics](Design.ConfigurationDiagnostics.md)
 
 ## Analysis
