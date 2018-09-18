@@ -52,7 +52,6 @@
     <Compile Include="LocalState\LocalStoreTimeoutEvent.cs" />
     <Compile Include="Util\Deadline.cs" />
     <Compile Include="LocalState\ILocalStore.cs" />
-    <Compile Include="LocalState\IReadableLocalStore.cs" />
     <Compile Include="Configuration\CaseInsensitiveEnumConfigurationConverter.cs" />
     <Compile Include="Configuration\Storage\FilterConfigurationReader.cs" />
     <Compile Include="Configuration\Storage\Validation\InvalidFilterFileExtension.cs" />
