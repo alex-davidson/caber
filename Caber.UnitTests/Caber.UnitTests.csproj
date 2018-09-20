@@ -68,6 +68,7 @@
     <Compile Include="FileSystem\UriTests.cs" />
     <Compile Include="FileSystem\Windows\WindowsFileSystemApiTests.cs" />
     <Compile Include="FileSystem\Windows\WindowsPathCanonicaliserTests.cs" />
+    <Compile Include="LocalState\LocalFilesystemStoreTests.cs" />
     <Compile Include="TestHelpers\ConcurrentOperations.cs" />
     <Compile Include="TestHelpers\MockClock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="TestHelpers\TemporaryFile.cs" />
     <Compile Include="TestHelpers\TestConfigurationProvider.cs" />
     <Compile Include="TestHelpers\TestDisposables.cs" />
+    <Compile Include="Util\DeadlineTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

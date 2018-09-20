@@ -1,4 +1,10 @@
-﻿namespace Caber.LocalState
+﻿using System;
+using System.Diagnostics;
+using System.IO;
+using Caber.Logging;
+using Caber.Util;
+
+namespace Caber.LocalState
 {
     public interface ILocalStore : IReadableLocalStore
     {

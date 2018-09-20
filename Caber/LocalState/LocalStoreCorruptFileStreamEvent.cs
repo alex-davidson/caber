@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using Caber.Logging;
 
 namespace Caber.LocalState
@@ -16,7 +17,7 @@ namespace Caber.LocalState
         public override LogEventCategory Category => LogEventCategory.None;
         public override ILogEventJsonDto GetDtoForJson() => this;
 
-        public override string FormatMessage() => $"File '{Path}' could not be read: {Exception}";
+        public override string FormatMessage() => $"File '{Path}' could not be read: {exception}";
 
         public string Path { get; }
         public ExceptionDto Exception => ExceptionDto.MapFrom(exception);
