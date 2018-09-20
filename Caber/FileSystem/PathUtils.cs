@@ -41,5 +41,10 @@ namespace Caber.FileSystem
         {
             return path.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar;
         }
+
+        public static bool IsValidPathSegmentName(string segment)
+        {
+            return !segment.Intersect(Path.GetInvalidFileNameChars()).Any();
+        }
     }
 }

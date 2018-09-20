@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="FileSystem\FileLockedException.cs" />
     <Compile Include="LocalState\AtomicFile.cs" />
+    <Compile Include="LocalState\LocalStoreTimeoutEvent.cs" />
+    <Compile Include="Util\Deadline.cs" />
     <Compile Include="LocalState\ILocalStore.cs" />
     <Compile Include="LocalState\IReadableLocalStore.cs" />
     <Compile Include="Configuration\CaseInsensitiveEnumConfigurationConverter.cs" />
