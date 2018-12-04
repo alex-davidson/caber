@@ -154,6 +154,7 @@
   <ItemGroup>
     <Compile Include="Http\AuthenticationTests.cs" />
     <Compile Include="Http\CaberRoutingTests.cs" />
+    <Compile Include="Http\Routes\RegisterRouteTests.cs" />
     <Compile Include="Http\StatusCodeRoute.cs" />
     <Compile Include="Http\TestServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

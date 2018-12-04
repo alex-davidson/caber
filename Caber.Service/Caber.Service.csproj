@@ -227,6 +227,7 @@
     <Compile Include="ArgumentParser.cs" />
     <Compile Include="Http\Authentication\CaberAuthenticationFailureMessage.cs" />
     <Compile Include="Http\CaberHttpUtil.cs" />
+    <Compile Include="Http\CaberRequestErrorLogger.cs" />
     <Compile Include="Http\ICaberRequestContext.cs" />
     <Compile Include="Http\Routes\AppendRoute.cs" />
     <Compile Include="Http\Authentication\CaberMutualAuthenticationFailureReason.cs" />

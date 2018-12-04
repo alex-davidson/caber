@@ -51,6 +51,7 @@ namespace Caber.Service
                     services.AddSingleton(typeof(ICaberMutualAuthentication), Authentication);
                     services.AddSingleton(RequestRouter);
                     services.AddSingleton<ICaberRequestHandler, CaberRequestHandler>();
+                    services.AddTransient<CaberRequestErrorLogger>();
 
                     services.AddAuthentication(x => x.DefaultScheme = CaberMutualAuthenticationHandler.SchemeName)
                         .AddScheme<AuthenticationSchemeOptions, CaberMutualAuthenticationHandler>(CaberMutualAuthenticationHandler.SchemeName, CaberMutualAuthenticationHandler.SchemeDescription, o => { });
