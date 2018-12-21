@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Service", "Caber.Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.DocumentationTests", "Caber.DocumentationTests\Caber.DocumentationTests.csproj", "{19DA7379-CEF4-42B4-9BD0-5927E3E6904C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Service.IntegrationTests", "Caber.Service.IntegrationTests\Caber.Service.IntegrationTests.csproj", "{A6E0AE19-BB88-42DD-B00A-3517CB48C215}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caber.Cryptography", "Caber.Cryptography\Caber.Cryptography.csproj", "{C5C721A7-E20E-41EE-8F6F-E1885038021E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{19DA7379-CEF4-42B4-9BD0-5927E3E6904C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{19DA7379-CEF4-42B4-9BD0-5927E3E6904C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{19DA7379-CEF4-42B4-9BD0-5927E3E6904C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6E0AE19-BB88-42DD-B00A-3517CB48C215}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6E0AE19-BB88-42DD-B00A-3517CB48C215}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6E0AE19-BB88-42DD-B00A-3517CB48C215}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6E0AE19-BB88-42DD-B00A-3517CB48C215}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5C721A7-E20E-41EE-8F6F-E1885038021E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5C721A7-E20E-41EE-8F6F-E1885038021E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5C721A7-E20E-41EE-8F6F-E1885038021E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5C721A7-E20E-41EE-8F6F-E1885038021E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

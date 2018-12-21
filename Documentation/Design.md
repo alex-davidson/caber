@@ -5,6 +5,7 @@
   * [Filtering](Design.FileSystem.Filters.md)
 * [Local Data Storage](Design.LocalStorage.md)
 * [Configuration Diagnostics](Design.ConfigurationDiagnostics.md)
+* [Authorisation and Identity](Design.Authorisation.md)
 
 ## Analysis
 

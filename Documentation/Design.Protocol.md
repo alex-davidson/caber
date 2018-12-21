@@ -23,6 +23,8 @@ trying to do doesn't agree with what the server thinks is possible, ie. their
 state doesn't match. This might be recoverable by trying a more conservative
 operation (posting more of the file) or by comparing notes with the server to
 re-sync states.
+It may also mean that the request is internally inconsistent, eg. the client
+UUID passed in the URI doesn't match the X-Caber-Sender header.
 
 An `HTTP 401 Unauthorized` response indicates that the client is not
 authorised to do whatever it tried to do. If it's not currently in the process
@@ -105,6 +107,8 @@ X-Caber-Operation: register
     acceptedRoots: { name: string; }[]
 }
 ```
+#### 400 Bad Request
+No response body.
 
 #### 401 Unauthorized
 No response body.
