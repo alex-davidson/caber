@@ -1,3 +1,10 @@
+**This project is defunct. My original use case for this particular solution still exists,
+but a simpler approach involving daily uploads has been 'good enough' for a long time and
+the whole system will likely be replaced before I need something like Caber.**
+
+**However, this project was useful for me as a learning experience and as an experiment.
+One of these days I might pull out the 'documentation tests' as a build-time tool.**
+
 # Caber
 
 A service for gathering logs and other append-only files and securely shipping
